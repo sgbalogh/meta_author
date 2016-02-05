@@ -1,0 +1,55 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAR0lEQVQYV2N8//79fwYiAOMgUvjx40ewi/n5+VFcjuJGmCKYCmTFcIXoJqHzwQpxWYcszvjgwQNwOKK7CWY9TDFYIS5FyIoBbio9qVTy8CIAAAAASUVORK5CYII=) repeat;
+  padding-top: 70px;
+}
+
+.navbar, .navbar-fixed-top, .navbar-inverse {
+  background: rgba(115, 14, 21, 0.8);
+  border-color: #666666;
+  height: 60px;
+
+  .navbar-right {
+    padding-top: 5px;
+    li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+}
+
+.breadcrumb {
+  background: auto;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 2.2em;
+  color: #fff;
+  letter-spacing: -1px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.footer {
+
+  color: #2f2f2f;
+  font-weight: bold;
+  ul {
+
+  }
+
+  a {
+    font-weight: normal;
+  }
+
+
+}
