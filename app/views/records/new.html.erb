@@ -1,0 +1,19 @@
+<h1>Create a new record:</h1>
+
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+
+  <%= form_for(@record) do |f| %>
+
+      <%= f.label :schema %>
+      <%= f.text_field :schema, class: 'form-control' %>
+
+      <%= f.submit "Create record", class: "btn btn-primary" %>
+  <% end %>
+
+
+
+
+</div>
+    </div>
