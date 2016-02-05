@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sense-Datum</title>
+  <title>TorchedEarth: A Metadata Toolkit</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,29 +9,21 @@
 
 <body>
 
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "Sense-Datum", root_path , id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Login", "#" %></li>
-          </ul>
-          </nav>
-
-      </div>
-  </header>
+<%= render 'layouts/header' %>
 
 <div class="container">
 
 
 
   <ol class="breadcrumb">
-    <li><a href="#">Home</a></li>
+    <li><%= link_to "Home", root_path %></li>
 
 
   </ol>
 
+  <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
 
 <%= yield %>
 
@@ -39,7 +31,7 @@
 
 
 <%= render('layouts/footer') %>
-  <%= debug(params) if Rails.env.development? %>
+  <% ## debug(params) if Rails.env.development? %>
 </div>
 
 </body>

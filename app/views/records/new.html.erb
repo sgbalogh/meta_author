@@ -6,12 +6,34 @@
 
   <%= form_for(@record) do |f| %>
 
-      <%= f.label :schema %>
+      <%= f.label 'Metadata Schema' %>
       <%= f.text_field :schema, class: 'form-control' %>
+
+      <%= f.label 'Unique Identifier (UUID)' %>
+      <%= f.text_field :uuid, class: 'form-control' %>
+
+      <%= f.label 'Title' %>
+      <%= f.text_field :dc_title_s, class: 'form-control' %>
+
+      <%= f.label 'Solr Year' %>
+      <%= f.text_field :solr_year_i, class: 'form-control' %>
+
+
+
+      <%= f.label 'Creator' %>
+      <%= f.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-delimiter' => ';' %>
+
 
       <%= f.submit "Create record", class: "btn btn-primary" %>
   <% end %>
 
+  <form class="form-inline" role="form">
+    <div class="form-group nested-group">
+      <input type="text" id="left-input" class="form-control">
+      <input type="text" id="middle-input" class="form-control">
+      <button class="btn btn-primary" type="button">Go!</button>
+    </div>
+  </form>
 
 
 

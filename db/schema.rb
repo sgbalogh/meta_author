@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205180952) do
+ActiveRecord::Schema.define(version: 20160205211339) do
 
   create_table "metadata", force: :cascade do |t|
     t.integer  "record_id"
@@ -24,9 +24,37 @@ ActiveRecord::Schema.define(version: 20160205180952) do
 
   create_table "records", force: :cascade do |t|
     t.string   "schema"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "user"
+    t.string   "uuid"
+    t.string   "dc_identifier_s"
+    t.string   "dc_title_s"
+    t.text     "dc_description_s"
+    t.string   "dc_rights_s"
+    t.string   "dct_provenance_s"
+    t.text     "dct_references_s"
+    t.text     "georss_box_s"
+    t.string   "layer_id_s"
+    t.string   "layer_geom_type_s"
+    t.datetime "layer_modified_dt"
+    t.string   "layer_slug_s"
+    t.text     "solr_geom"
+    t.text     "solr_year_i"
+    t.text     "dc_creator_sm"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "institution"
+    t.string   "division"
+    t.string   "email"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

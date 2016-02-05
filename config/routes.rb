@@ -1,10 +1,23 @@
 Rails.application.routes.draw do
 
 
+  get 'sessions/new'
+
+  get 'users/new'
+
   get 'records/new' => 'records#new'
+  get 'records/json' => 'records#json'
   resources :records
+  resources :users
+
+  get 'register' => 'users#new'
 
   root 'static#home'
+
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
