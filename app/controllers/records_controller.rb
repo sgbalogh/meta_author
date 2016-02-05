@@ -9,10 +9,18 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = Record.new(user_params)
+    if !current_user.nil?
+    @user = current_user
+
+    @record = @user.records.new(user_params)
     flash[:success] = "Record saved successfully."
     @record.save
     redirect_to root_path
+    else
+      flash[:danger] = "You aren't logged in!"
+      redirect_to root_path
+    end
+
   end
 
   def json
@@ -24,7 +32,7 @@ class RecordsController < ApplicationController
   private
 
   def user_params
-    params.require(:record).permit(:schema)
+    params.require(:record).permit(:schema, :uuid, :dc_title_s, :solr_year_i, :dc_creator_sm)
   end
 
 

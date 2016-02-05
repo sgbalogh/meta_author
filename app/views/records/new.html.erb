@@ -4,27 +4,27 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 
-  <%= form_for(@record) do |f| %>
+  <%= form_for(@record) do |form| %>
 
-      <%= f.label 'Metadata Schema' %>
-      <%= f.text_field :schema, class: 'form-control' %>
+      <%= form.label 'Metadata Schema' %>
+      <%= form.text_field :schema, class: 'form-control' %>
 
-      <%= f.label 'Unique Identifier (UUID)' %>
-      <%= f.text_field :uuid, class: 'form-control' %>
+      <%= form.label 'Unique Identifier (UUID)' %>
+      <%= form.text_field :uuid, class: 'form-control' %>
 
-      <%= f.label 'Title' %>
-      <%= f.text_field :dc_title_s, class: 'form-control' %>
+      <%= form.label 'Title' %>
+      <%= form.text_field :dc_title_s, class: 'form-control' %>
 
-      <%= f.label 'Solr Year' %>
-      <%= f.text_field :solr_year_i, class: 'form-control' %>
-
-
-
-      <%= f.label 'Creator' %>
-      <%= f.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-delimiter' => ';' %>
+      <%= form.label 'Solr Year' %>
+      <%= form.text_field :solr_year_i, class: 'form-control' %>
 
 
-      <%= f.submit "Create record", class: "btn btn-primary" %>
+
+      <%= form.label 'Creator' %>
+      <%= form.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-delimiter' => ';' %>
+
+
+      <%= form.submit "Create record", class: "btn btn-primary" %>
   <% end %>
 
   <form class="form-inline" role="form">
