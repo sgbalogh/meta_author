@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 //= depend_on_asset "layers.png"
 //= depend_on_asset "layers-2x.png"
 
@@ -49,14 +50,7 @@ body {
   background: #F1F1F1;
   border: 0px solid #F1F1F1;
 
-
-
-
 }
-
-
-
-
 
 .footer {
 
@@ -82,14 +76,34 @@ body {
   font-size: 1.0em;
   letter-spacing: 0px;
 
-
-
 }
 
-#map { height: 300px;
-margin-left: auto;
-margin-right: auto;
-width: 100%;
+#map {
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   margin-bottom: 20px;
   border: 1px solid #ccc;
+}
+
+#homemap {
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  z-index: 0;
+  margin-top: -40px;
+  margin-bottom: -40px;
+}
+
+#above_map {
+  z-index: 10;
+}
+
+#hometext {
+  margin-top: -150px;
+  margin-left: auto;
+  margin-right: auto;
+
 }
