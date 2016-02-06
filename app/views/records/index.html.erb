@@ -1,0 +1,20 @@
+
+
+<%= link_to "Create New Record", 'records/new', class: "btn btn-primary btn", role: "button" %>
+ <hr>
+
+<ul class="list-group">
+<% @user.records.each do |record| %>
+      <li class="list-group-item">
+        <span class="badge alert-success" ><b>uuid:</b> <%= record.uuid %></span>
+        <span class="badge alert-info">Created: <%= record.updated_at.strftime("%A, %B %Y") %></span>
+        <span class="badge alert-danger"><%= link_to "JSON", record_path(record, :format => "json") %></span>
+
+        <%= link_to record.dc_title_s, record %>
+
+      </li>
+
+
+<% end %>
+
+    </ul>

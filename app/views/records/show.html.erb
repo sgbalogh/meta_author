@@ -1,0 +1,14 @@
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h4><%= @record.dc_title_s  %><code>(<%= @record.uuid  %>)</code></h4></div>
+<table class="table">
+   <% @record.attributes.each do |key, value|  %>
+      <tr>
+        <td><b><%= fullname(key) %></b></td>
+   <td><%= key %></td>
+   <td><code><%= value %></code></td>
+ </tr>
+      <% end %>
+</table>
+</div>

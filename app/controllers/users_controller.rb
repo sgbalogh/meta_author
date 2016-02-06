@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "You created an account! Welcome!"
+      log_in(@user)
       redirect_to root_path
     else
       flash[:danger] = "Sorry, please try again."

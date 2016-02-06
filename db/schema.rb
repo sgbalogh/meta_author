@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160205223617) do
 
-  create_table "metadata", force: :cascade do |t|
-    t.integer  "record_id"
-    t.string   "metadata_key"
-    t.string   "metadata_value"
-    t.string   "schema"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "records", force: :cascade do |t|
     t.string   "schema"
     t.datetime "created_at",        null: false

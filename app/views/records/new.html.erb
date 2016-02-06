@@ -1,39 +1,30 @@
-<h1>Create a new record:</h1>
+<h3>Create a new record:</h3>
 
 
 <div class="row">
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-5 col-md-offset-0">
 
   <%= form_for(@record) do |form| %>
 
-      <%= form.label 'Metadata Schema' %>
-      <%= form.text_field :schema, class: 'form-control' %>
+      <%= form.label 'Metadata Schema', class: "form_id" %>
+      <%= form.text_field :schema, class: 'form-control', placeholder: "GeoBlacklight" %>
 
-      <%= form.label 'Unique Identifier (UUID)' %>
+      <%= form.label 'Unique Identifier (UUID)', class: "form_id" %>
       <%= form.text_field :uuid, class: 'form-control' %>
 
-      <%= form.label 'Title' %>
+      <%= form.label 'Title', class: "form_id"  %>
       <%= form.text_field :dc_title_s, class: 'form-control' %>
 
-      <%= form.label 'Solr Year' %>
+      <%= form.label 'Solr Year', class: "form_id"  %>
       <%= form.text_field :solr_year_i, class: 'form-control' %>
 
-
-
-      <%= form.label 'Creator' %>
+      <%= form.label 'Creator', class: "form_id"  %>
       <%= form.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-delimiter' => ';' %>
 
 
       <%= form.submit "Create record", class: "btn btn-primary" %>
   <% end %>
 
-  <form class="form-inline" role="form">
-    <div class="form-group nested-group">
-      <input type="text" id="left-input" class="form-control">
-      <input type="text" id="middle-input" class="form-control">
-      <button class="btn btn-primary" type="button">Go!</button>
-    </div>
-  </form>
 
 
 

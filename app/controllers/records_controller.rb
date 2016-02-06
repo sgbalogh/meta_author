@@ -3,9 +3,28 @@ class RecordsController < ApplicationController
     @record = Record.new
   end
 
+  def index
+    if !current_user.nil?
+      @user = current_user
+    else
+      flash[:danger] = "You aren't logged in!"
+      redirect_to login_path
+    end
+  end
+
+
+
   def show
     @record = Record.find(params[:id])
-    render json: @record
+
+    if params[:format] == "json"
+      render json: Record.find(params[:id])
+    end
+
+
+
+
+    # render json: @record
   end
 
   def create
