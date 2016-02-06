@@ -1,14 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+//= depend_on_asset "layers.png"
+//= depend_on_asset "layers-2x.png"
 
 body {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAR0lEQVQYV2N8//79fwYiAOMgUvjx40ewi/n5+VFcjuJGmCKYCmTFcIXoJqHzwQpxWYcszvjgwQNwOKK7CWY9TDFYIS5FyIoBbio9qVTy8CIAAAAASUVORK5CYII=) repeat;
+  // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAR0lEQVQYV2N8//79fwYiAOMgUvjx40ewi/n5+VFcjuJGmCKYCmTFcIXoJqHzwQpxWYcszvjgwQNwOKK7CWY9TDFYIS5FyIoBbio9qVTy8CIAAAAASUVORK5CYII=) repeat;
+
   padding-top: 70px;
 }
 
 .navbar, .navbar-fixed-top, .navbar-inverse {
-  background: rgba(171,87,0, 1);
-  border-bottom: 1px solid #9e4f00;
+  background: #57068c;
+  border-bottom: 1px solid #320657;
   height: 60px;
 
   .navbar-right {
@@ -51,7 +54,9 @@ body {
 }
 
 .panel {
-  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 
 }
 
@@ -82,4 +87,10 @@ body {
 
 
 
+}
+
+#map { height: 300px;
+margin-left: auto;
+margin-right: auto;
+width: 90%;
 }

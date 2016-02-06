@@ -13,4 +13,10 @@
  *= require_tree .
  *= require_self
  *= require styles
+ *= require leaflet
+
+* following is also for Leaflet:
+//= depend_on_asset "layers.png"
+//= depend_on_asset "layers-2x.png"
+
  */

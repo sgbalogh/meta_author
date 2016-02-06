@@ -1,14 +1,31 @@
 
+<div id="map"><script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        maxZoom: 18,
+        detectRetina: true,
+    }).addTo(map);
+
+    var polygon = L.polygon([
+        [51.509, -0.08],
+        [51.503, -0.06],
+        [51.51, -0.047]
+    ]).addTo(map);
+
+</script></div>
 
 <div class="panel panel-default">
   <div class="panel-heading"><h4><%= @record.dc_title_s  %><code>(<%= @record.uuid  %>)</code></h4></div>
 <table class="table">
    <% @record.attributes.each do |key, value|  %>
       <tr>
-        <td><b><%= fullname(key) %></b></td>
+        <td><b><%= translate(key) %></b></td>
    <td><%= key %></td>
    <td><code><%= value %></code></td>
  </tr>
       <% end %>
 </table>
+
 </div>
