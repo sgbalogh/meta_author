@@ -23,10 +23,24 @@ module RecordsHelper
             "dc_creator_sm" => "Creator",
             "user_id" => "User ID (TorchedEarth)",
 
-
-
     }
     return hash[key]
+  end
+
+  def parse_polygon(string)
+    string.slice!('ENVELOPE(').slice!(')')
+    arr = string.split(", ")
+    polygon = [
+               [(arr[2].to_f), (arr[0].to_f)],
+               [(arr[2].to_f), (arr[1].to_f)],
+               [(arr[3].to_f), (arr[1].to_f)],
+               [(arr[3].to_f), (arr[0].to_f)]
+    ]
+    return polygon
+  end
+
+  def find_centroid(array)
+    return [(array[0][0] + array[2][0])/2, (array[0][1] + array[1][1])/2]
   end
 
 end

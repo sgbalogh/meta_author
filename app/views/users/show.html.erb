@@ -1,1 +1,6 @@
-hello!
+<% if !current_user.nil? %>
+<h3><%= current_user.firstname + " " + current_user.lastname %></h3>
+    <h5><%= current_user.institution + ", " + current_user.division %></h5>
+<% else %>
+sup
+<% end %>

@@ -53,12 +53,7 @@ body {
 
 }
 
-.panel {
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
 
-}
 
 
 
@@ -76,6 +71,7 @@ body {
     font-weight: normal;
   }
 
+  margin-bottom: 40px;
 
 }
 
@@ -92,5 +88,7 @@ body {
 #map { height: 300px;
 margin-left: auto;
 margin-right: auto;
-width: 90%;
+width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
 }

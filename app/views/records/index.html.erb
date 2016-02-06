@@ -1,8 +1,11 @@
 
 
 <%= link_to "Create New Record", 'records/new', class: "btn btn-primary btn", role: "button" %>
+<%= link_to "Import from JSON", 'records/new', class: "btn btn-default btn", role: "button" %>
+<%= link_to "Batch Loader", 'records/new', class: "btn btn-default btn", role: "button" %>
  <hr>
 
+<h4>Recently Updated</h4>
 <ul class="list-group">
 <% @user.records.each do |record| %>
       <li class="list-group-item">
