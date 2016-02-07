@@ -28,8 +28,9 @@ module RecordsHelper
   end
 
   def parse_polygon(string)
-    string.slice!('ENVELOPE(').slice!(')')
-    arr = string.split(", ")
+    mystr = string.dup
+    mystr.slice!('ENVELOPE(').slice!(')')
+    arr = mystr.split(", ")
     polygon = [
                [(arr[2].to_f), (arr[0].to_f)],
                [(arr[2].to_f), (arr[1].to_f)],

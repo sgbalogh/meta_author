@@ -28,6 +28,7 @@
 <div class="row">
   <div class="col-md-8">
     <div class="panel panel-default">
+
       <div class="panel-heading"><h4><b><%= @record.dc_title_s %></b><br><code><%= @record.uuid %></code></h4></div>
       <table class="table table-striped table-hover table-bordered">
         <% @record.attributes.each do |key, value| %>
@@ -44,9 +45,8 @@
 
   <div class="col-md-4">
     <div class="list-group">
-      <a href="#" class="list-group-item">
-        Edit Record
-      </a>
+
+      <%= link_to "Edit Record", edit_record_path, class: "list-group-item" %>
       <a href="?format=json" class="list-group-item">Export JSON</a>
       <a href="#" class="list-group-item active">Open on OGM</a>
 

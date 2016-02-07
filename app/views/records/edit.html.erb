@@ -1,0 +1,56 @@
+<h3>Update existing record:</h3>
+
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-0">
+
+    <%= form_for(@record) do |form| %>
+
+        <%= form.label 'Metadata Schema', class: "form_id" %>
+        <%= form.select :schema, ['GeoBlacklight', 'ISO 19119', 'FGDC'], {}, {class: 'form-control'} %>
+
+        <%= form.label 'Unique Identifier (UUID)', class: "form_id" %>
+        <%= form.text_field :uuid, class: 'form-control' %>
+
+        <%= form.label 'Title', class: "form_id" %>
+        <%= form.text_field :dc_title_s, class: 'form-control' %>
+
+        <%= form.label 'Description', class: "form_id" %>
+        <%= form.text_field :dc_description_s, class: 'form-control' %>
+
+        <%= form.label 'Creator', class: "form_id" %>
+        <%= form.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-delimiter' => ';' %>
+
+        <%= form.label 'Rights', class: "form_id" %>
+        <%= form.select :dc_rights_s, ['Restricted', 'Public'], {}, {class: 'form-control'} %>
+
+        <%= form.label 'Provenance', class: "form_id" %>
+        <%= form.text_field :dct_provenance_s, class: 'form-control', placeholder: current_user.institution %>
+
+        <%= form.label 'References', class: "form_id" %>
+        <%= form.text_field :dct_references_s, class: 'form-control' %>
+
+        <%= form.label 'GeoRSS Bounding Box', class: "form_id" %>
+        <%= form.text_field :georss_box_s, class: 'form-control' %>
+
+        <%= form.label 'Layer ID', class: "form_id" %>
+        <%= form.text_field :layer_id_s, class: 'form-control' %>
+
+        <%= form.label 'Geometry Type', class: "form_id" %>
+        <%= form.select :layer_geom_type_s, ['Point', 'Line', 'Polygon'], {}, {class: 'form-control'} %>
+
+        <%= form.label 'Layer Slug', class: "form_id" %>
+        <%= form.text_field :layer_slug_s, class: 'form-control' %>
+
+        <%= form.label 'Solr Bounding Box', class: "form_id" %>
+        <%= form.text_field :solr_geom, class: 'form-control' %>
+
+        <%= form.label 'Solr Year', class: "form_id" %>
+        <%= form.text_field :solr_year_i, class: 'form-control' %>
+
+        <%= form.submit "Update record", class: "btn btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>

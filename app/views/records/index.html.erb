@@ -7,8 +7,8 @@
 <ul class="list-group">
   <% Record.all.order(updated_at: :desc).take(20).each do |record| %>
       <a href="<%= records_path(record).sub! '.', '/' %>" class="list-group-item">
-        <span class="badge alert-success"><b>uuid:</b> <%= record.uuid %></span>
-        <span class="badge alert-info">Created: <%= record.updated_at.strftime("%A, %B %Y") %></span>
+        <span class="badge alert-success"><b>UUID:</b> <%= record.uuid %></span>
+        <span class="badge alert-info">updated <%= distance_of_time_in_words_to_now(record.updated_at) %> ago</span>
         <%= record.dc_title_s %>
       </a href="<%= records_path(record) %>" >
   <% end %>
