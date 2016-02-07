@@ -5,11 +5,10 @@ Rails.application.routes.draw do
 
   get 'users/new'
 
-  get '/records' => 'records#index'
-  get 'records/new' => 'records#new'
-  get 'records/json' => 'records#json'
+
   resources :records
   resources :users
+
 
   get 'register' => 'users#new'
 

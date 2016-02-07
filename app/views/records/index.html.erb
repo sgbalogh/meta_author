@@ -1,23 +1,16 @@
-
-
 <%= link_to "Create New Record", 'records/new', class: "btn btn-primary btn", role: "button" %>
 <%= link_to "Import from JSON", 'records/new', class: "btn btn-default btn", role: "button" %>
 <%= link_to "Batch Loader", 'records/new', class: "btn btn-default btn", role: "button" %>
- <hr>
+<hr>
 
 <h4>Recently Updated</h4>
 <ul class="list-group">
-<% @user.records.each do |record| %>
-      <li class="list-group-item">
-        <span class="badge alert-success" ><b>uuid:</b> <%= record.uuid %></span>
+  <% Record.all.order(updated_at: :desc).take(20).each do |record| %>
+      <a href="<%= records_path(record).sub! '.', '/' %>" class="list-group-item">
+        <span class="badge alert-success"><b>uuid:</b> <%= record.uuid %></span>
         <span class="badge alert-info">Created: <%= record.updated_at.strftime("%A, %B %Y") %></span>
-        <span class="badge alert-danger"><%= link_to "JSON", record_path(record, :format => "json") %></span>
+        <%= record.dc_title_s %>
+      </a href="<%= records_path(record) %>" >
+  <% end %>
 
-        <%= link_to record.dc_title_s, record %>
-
-      </li>
-
-
-<% end %>
-
-    </ul>
+</ul>
