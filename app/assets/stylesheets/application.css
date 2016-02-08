@@ -14,6 +14,8 @@
  *= require_self
  *= require styles
  *= require leaflet
+ *= require bootstrap-tagsinput
+ *= require leaflet.draw
 
 * following is also for Leaflet:
 //= depend_on_asset "layers.png"

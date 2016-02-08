@@ -2,9 +2,10 @@ class Record < ActiveRecord::Base
 =begin
   serialize :dc_description_s, Array
   serialize :solr_year_i, Array
-  serialize :dc_creator_sm, Array
+
 =end
 
+  serialize :dc_creator_sm, Array
   belongs_to :user
 
 

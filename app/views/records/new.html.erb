@@ -1,5 +1,51 @@
 <h3>Create a new record:</h3>
 
+<div id="map">
+  <script>
+
+      var map = L.map('map').setView([0,0], 10);
+
+      var featureGroup = L.featureGroup().addTo(map);
+
+      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+          maxZoom: 18,
+          detectRetina: true,
+      }).addTo(map);
+
+      var preview = L.tileLayer.wms('https://maps-public.geo.nyu.edu/geoserver/sdr/wms', {
+          layers: 'sdr:nyu_2451_33888',
+          format: 'image/png',
+          transparent: true,
+          detectRetina: true,
+      }).addTo(map);
+
+      var drawControl = new L.Control.Draw({
+          edit: {
+              featureGroup: featureGroup
+          }
+      }).addTo(map);
+
+      map.on('draw:created', function(e) {
+          featureGroup.addLayer(e.layer);
+          console.log(e);
+          if (e.layerType == "rectangle") {
+              S = e.layer._latlngs[0].lat;
+              W = e.layer._latlngs[0].lng;
+              N = e.layer._latlngs[1].lat;
+              E = e.layer._latlngs[2].lng;
+              console.log(N + " " + S + " " + E + " " + W);
+              document.getElementById("solr_geom").value = "ENVELOPE(" + W + ", " + E + ", " + N + ", " + S + ")";
+          }
+
+
+
+      });
+
+
+  </script>
+</div>
+
 
 <div class="row">
 <div class="col-md-5 col-md-offset-0">
@@ -19,13 +65,13 @@
       <%= form.text_field :dc_description_s, class: 'form-control' %>
 
       <%= form.label 'Creator', class: "form_id"  %>
-      <%= form.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-delimiter' => ';' %>
+      <%= form.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-role'=>'tagsinput' %>
 
       <%= form.label 'Rights', class: "form_id"  %>
       <%= form.select :dc_rights_s, ['Restricted', 'Public'], {}, { class: 'form-control'} %>
 
-      <%= form.label 'Provenance', class: "form_id"  %>
-      <%= form.text_field :dct_provenance_s, class: 'form-control', placeholder: current_user.institution %>
+      <%= form.label 'Provenance', class: "form_id"  %><br>
+      <%= form.text_field :dct_provenance_s, class: 'form-control', placeholder: current_user.institution, 'data-role'=>'tagsinput' %><br>
 
       <%= form.label 'References', class: "form_id"  %>
       <%= form.text_field :dct_references_s, class: 'form-control' %>
@@ -43,7 +89,7 @@
       <%= form.text_field :layer_slug_s, class: 'form-control' %>
 
       <%= form.label 'Solr Bounding Box', class: "form_id"  %>
-      <%= form.text_field :solr_geom, class: 'form-control' %>
+      <%= form.text_field :solr_geom, class: 'form-control', id: "solr_geom" %>
 
 
 

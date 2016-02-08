@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-tagsinput-rails'
 gem 'leaflet-rails'
 gem 'bcrypt'
 gem 'bootstrap-sass'
