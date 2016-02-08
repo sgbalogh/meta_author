@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205223617) do
+ActiveRecord::Schema.define(version: 20160208180451) do
+
+  create_table "metadata", force: :cascade do |t|
+    t.integer  "record_id"
+    t.string   "metadata_key"
+    t.string   "metadata_value"
+    t.string   "schema"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "records", force: :cascade do |t|
     t.string   "schema"
@@ -33,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160205223617) do
     t.text     "solr_year_i"
     t.text     "dc_creator_sm"
     t.integer  "user_id"
+    t.text     "georss_polygon_s"
   end
 
   add_index "records", ["user_id", "created_at"], name: "index_records_on_user_id_and_created_at"

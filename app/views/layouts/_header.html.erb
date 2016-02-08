@@ -6,7 +6,7 @@
 
         <li><%= link_to "Home", root_path %></li>
         <% if !current_user.nil?  %>
-            <li><%= link_to "My Records", records_path %></li>
+            <li><%= link_to "Records", records_path %></li>
             <li><%= link_to "Logout", logout_path, method: "delete" %></li>
             <li><%= link_to current_user.email, current_user %></li>
 

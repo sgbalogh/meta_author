@@ -8,6 +8,9 @@ class Record < ActiveRecord::Base
   serialize :dc_creator_sm, Array
   belongs_to :user
 
+  validates :dc_title_s, presence: true
+
+
 
 
 
