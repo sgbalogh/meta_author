@@ -1,13 +1,17 @@
-<h3>Datasets</h3>
+<div class="jumbotron">
+  <h1>Deposit a dataset!</h1>
+  <p>Preserve your geospatial layers in NYU's <%= link_to 'Spatial Data Repository', 'https://geo.nyu.edu' %>, and take advantage of its publishing and citation features</p>
+  <%= link_to 'Start a new submission', new_dataset_path, class: "btn btn-primary btn-lg", role: "button" %>
+  <%= link_to 'View status of a pending submission', new_dataset_path, class: "btn btn-primary btn-lg btn-warning", role: "button" %>
+  <%= link_to 'Learn more', new_dataset_path, class: "btn btn-primary btn-lg btn-success", role: "button" %>
+</div>
 
-
-
-<% @datasets.each do |ds| %>
-
-
-    <%= ds.attachment %><br><br><br>
-
-
-
-<% end %>
-
+<h3>Recent submissions</h3>
+<ul class="list-group">
+  <% Dataset.all.order(updated_at: :desc).take(5).each do |dataset| %>
+      <a href="#" class="list-group-item">
+        <span class="badge alert-info">submitted <%= distance_of_time_in_words_to_now(dataset.updated_at) %> ago</span>
+        <%= dataset.name %>
+      </a>
+  <% end %>
+</ul>
