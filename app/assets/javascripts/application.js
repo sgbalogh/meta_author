@@ -16,4 +16,6 @@
 //= require turbolinks
 //= require bootstrap-tagsinput
 //= require leaflet.draw
+//= require jquery-fileupload/basic
+
 //= require_tree .

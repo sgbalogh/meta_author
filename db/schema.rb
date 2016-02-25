@@ -11,23 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208182319) do
+ActiveRecord::Schema.define(version: 20160210045125) do
 
   create_table "datasets", force: :cascade do |t|
     t.string   "name"
     t.string   "attachment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "record_id"
   end
 
-  create_table "metadata", force: :cascade do |t|
-    t.integer  "record_id"
-    t.string   "metadata_key"
-    t.string   "metadata_value"
-    t.string   "schema"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
+  add_index "datasets", ["record_id"], name: "index_datasets_on_record_id"
 
   create_table "records", force: :cascade do |t|
     t.string   "schema"

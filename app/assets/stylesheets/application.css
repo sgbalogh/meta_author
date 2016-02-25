@@ -16,6 +16,8 @@
  *= require leaflet
  *= require bootstrap-tagsinput
  *= require leaflet.draw
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
 
 * following is also for Leaflet:
 //= depend_on_asset "layers.png"

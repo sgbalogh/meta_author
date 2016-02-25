@@ -50,8 +50,9 @@ class RecordsController < ApplicationController
     if !current_user.nil?
       @user = current_user
       @record = @user.records.new(user_params)
+      @dataset = @record.datasets.new(dataset_params)
 
-      if @record.save
+      if @record.save && @dataset.save
         flash[:success] = "Record saved successfully."
         redirect_to @record
       else
@@ -84,6 +85,10 @@ class RecordsController < ApplicationController
 
   def user_params
     params.require(:record).permit(:schema, :uuid, :dc_title_s, :dc_identifier_s, :dc_description_s, :dc_rights_s, :dct_provenance_s, :dct_references_s, :georss_box_s, :georss_polygon_s, :layer_id_s, :layer_geom_type_s, :layer_modified_dt, :layer_slug_s, :solr_geom, :solr_year_i, :dc_creator_sm)
+  end
+
+  def dataset_params
+    params.require(:dataset).permit(:name, {attachment: []})
   end
 
 

@@ -1,7 +1,7 @@
 <h2>Dataset Deposit</h2>
 
 <% if !@dataset.errors.empty? %>
-    <div class = "alert alert-error">
+    <div class="alert alert-error">
 
       <ul>
         <% @dataset.errors.full_messages.each do |msg| %>
@@ -12,13 +12,111 @@
     </div>
 <% end %>
 
-<div class = "well">
-  <%= form_for @dataset, html: { multipart: true } do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<div id="map">
+  <script>
 
-      <%= f.label :attachment %>
-      <%= f.file_field :attachment, class: "btn btn-default btn-file" %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
-  <% end %>
+      var map = L.map('map').setView([0, 0], 2);
+
+      var featureGroup = L.featureGroup().addTo(map);
+
+      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+          maxZoom: 18,
+          detectRetina: true,
+      }).addTo(map);
+
+      var preview = L.tileLayer.wms('https://maps-public.geo.nyu.edu/geoserver/sdr/wms', {
+          layers: 'sdr:nyu_2451_33888',
+          format: 'image/png',
+          transparent: true,
+          detectRetina: true,
+      }).addTo(map);
+
+      var drawControl = new L.Control.Draw({
+          edit: {
+              featureGroup: featureGroup
+          }
+      }).addTo(map);
+
+      map.on('draw:created', function (e) {
+          featureGroup.addLayer(e.layer);
+          console.log(e);
+          if (e.layerType == "rectangle") {
+              S = e.layer._latlngs[0].lat;
+              W = e.layer._latlngs[0].lng;
+              N = e.layer._latlngs[1].lat;
+              E = e.layer._latlngs[2].lng;
+              console.log(N + " " + S + " " + E + " " + W);
+              document.getElementById("solr_geom").value = "ENVELOPE(" + W + ", " + E + ", " + N + ", " + S + ")";
+              document.getElementById("georss_box_s").value = S + " " + W + " " + N + " " + E;
+              document.getElementById("georss_polygon_s").value = S + " " + W + " " + N + " " + W + " " + N + " " + E + " " + S + " " + E + " " + S + " " + W;
+          }
+      });
+
+
+  </script>
 </div>
+
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-0">
+
+    <%= form_for(@dataset) do |form| %>
+
+        <%= fields_for :record, @record, html: {multipart: true} do |f2| %>
+
+            <%= f2.label 'Title', class: "form_id" %>
+            <%= f2.text_field :dc_title_s, class: 'form-control' %>
+
+            <%= f2.label 'Description', class: "form_id" %>
+            <%= f2.text_field :dc_description_s, class: 'form-control' %>
+
+            <%= f2.label 'Creator', class: "form_id" %>
+            <%= f2.text_field :dc_creator_sm, class: 'form-control', multiple: true, 'data-delimiter' => ';' %>
+
+            <%= f2.label 'Rights', class: "form_id" %>
+            <%= f2.select :dc_rights_s, ['Restricted', 'Public'], {}, {class: 'form-control'} %>
+
+            <%= f2.label 'Geometry Type', class: "form_id" %>
+            <%= f2.select :layer_geom_type_s, ['Point', 'Line', 'Polygon'], {}, {class: 'form-control'} %>
+
+            <%= f2.label 'GeoRSS Bounding Box', class: "form_id" %>
+            <%= f2.text_field :georss_box_s, class: 'form-control', id: 'georss_box_s' %>
+
+            <%= f2.label 'GeoRSS Polygon', class: "form_id" %>
+            <%= f2.text_field :georss_polygon_s, class: 'form-control', id: 'georss_polygon_s' %>
+
+            <%= f2.label 'Solr Bounding Box', class: "form_id" %>
+            <%= f2.text_field :solr_geom, class: 'form-control', id: 'solr_geom' %>
+
+            <%= f2.label 'Solr Year', class: "form_id" %>
+            <%= f2.text_field :solr_year_i, class: 'form-control' %>
+
+            </div>
+
+        <% end %>
+
+        <div class="col-md-6 col-md-offset-1">
+          <h4>File Attachment</h4>
+
+          <div class="well">
+
+            <%= form.label :name %><br>
+            <%= form.text_field :name, class: 'form-control' %>
+
+            <%= form.label :attachment %>
+            <%= form.file_field :attachment, class: 'form-control' %>
+
+          </div>
+
+          <%= form.submit "Submit record", class: "btn btn-primary" %>
+
+        </div>
+    <% end %>
+
+    </div>
+
+
+
+
+
