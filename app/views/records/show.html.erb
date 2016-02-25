@@ -39,7 +39,7 @@
             </tr>
         <% end %>
 
-        <% unless @record.datasets.nil? %>
+        <% unless @record.datasets.first.nil? %>
             <td><b>Attached Dataset</b></td>
             <td></td>
             <td><code><%= @record.datasets.first.name %></code></td>

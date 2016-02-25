@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "jquery-fileupload-rails"
 gem 'carrierwave'
 gem 'bootstrap-tagsinput-rails'
 gem 'leaflet-rails'
