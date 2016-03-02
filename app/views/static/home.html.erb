@@ -4,11 +4,15 @@
 <div class="jumbotron">
 
 <div class="container">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <h2>Welcome to
-      <bold>TorchedEarth</bold>!
+      <bold>MetaAuthor</bold>!
     </h2>
     <h4>A <code>geospatial metadata</code> editing platform...</h4>
+<hr>
+    <%= link_to 'Submit a geospatial dataset', datasets_path, class: "btn btn-primary btn-lg", role: "button" %>
+    <%= link_to 'Edit a metadata record', new_dataset_path, class: "btn btn-primary btn-lg btn-warning", role: "button" %>
+
   </div>
 
 </div>

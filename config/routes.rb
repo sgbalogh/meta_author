@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
 
+  get 'datasets/index'
+
+  get 'datasets/new'
+
+  get 'datasets/create'
+
+  get 'datasets/destroy'
+
   get 'sessions/new'
 
   get 'users/new'
@@ -17,6 +25,12 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+
+
+  # Below for CarrierWave
+  resources :datasets, only: [:index, :new, :create, :destroy]
+  get 'datasets/index'
+
 
 
 

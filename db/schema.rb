@@ -11,16 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208180451) do
+ActiveRecord::Schema.define(version: 20160302223931) do
 
-  create_table "metadata", force: :cascade do |t|
-    t.integer  "record_id"
-    t.string   "metadata_key"
-    t.string   "metadata_value"
-    t.string   "schema"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
+# Could not dump table "datasets" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "records", force: :cascade do |t|
     t.string   "schema"

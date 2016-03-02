@@ -38,6 +38,14 @@
               <td><code><%= value %></code></td>
             </tr>
         <% end %>
+
+        <% unless @record.datasets.first.nil? %>
+            <td><b>Attached Dataset</b></td>
+            <td></td>
+            <td><code><%= @record.datasets.first.name %></code></td>
+
+
+        <% end %>
       </table>
 
     </div>

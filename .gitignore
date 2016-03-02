@@ -10,8 +10,12 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-
+/storage/.
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
+/public/uploads/*
+/storage
+.byebug_history
+.gitignore
