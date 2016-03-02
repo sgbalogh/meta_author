@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210045125) do
+ActiveRecord::Schema.define(version: 20160302223931) do
 
-  create_table "datasets", force: :cascade do |t|
-    t.string   "name"
-    t.string   "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "record_id"
-  end
-
-  add_index "datasets", ["record_id"], name: "index_datasets_on_record_id"
+# Could not dump table "datasets" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "records", force: :cascade do |t|
     t.string   "schema"

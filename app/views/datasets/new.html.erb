@@ -1,22 +1,15 @@
 <h2>Dataset Deposit</h2>
 
 <% if !@dataset.errors.empty? %>
-    <div class="alert alert-error">
-
-      <ul>
         <% @dataset.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+            <div class="alert alert-danger"><%= msg %></div>
         <% end %>
-      </ul>
-
-    </div>
 <% end %>
 
 <div id="map">
   <script>
 
       var map = L.map('map').setView([0, 0], 2);
-
       var featureGroup = L.featureGroup().addTo(map);
 
       L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
@@ -53,7 +46,6 @@
           }
       });
 
-
   </script>
 </div>
 
@@ -61,9 +53,9 @@
 <div class="row">
   <div class="col-md-5 col-md-offset-0">
 
-    <%= form_for(@dataset) do |form| %>
+    <%= form_for @dataset, html: { multipart: true } do |form| %>
 
-        <%= fields_for :record, @record, html: {multipart: true} do |f2| %>
+        <%= fields_for :record, @record do |f2| %>
 
             <%= f2.label 'Title', class: "form_id" %>
             <%= f2.text_field :dc_title_s, class: 'form-control' %>
@@ -92,9 +84,8 @@
             <%= f2.label 'Solr Year', class: "form_id" %>
             <%= f2.text_field :solr_year_i, class: 'form-control' %>
 
-            </div>
-
         <% end %>
+        </div>
 
         <div class="col-md-6 col-md-offset-1">
           <h4>File Attachment</h4>
@@ -104,8 +95,8 @@
             <%= form.label :name %><br>
             <%= form.text_field :name, class: 'form-control' %>
 
-            <%= form.label :attachment %>
-            <%= form.file_field :attachment, class: 'form-control' %>
+            <%= form.label :multiattach %>
+            <%= form.file_field :multiattach, class: 'form-control', multiple: true %>
 
           </div>
 

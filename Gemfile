@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem "jquery-fileupload-rails"
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'bootstrap-tagsinput-rails'
 gem 'leaflet-rails'
 gem 'bcrypt'

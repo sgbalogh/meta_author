@@ -1,6 +1,15 @@
 class DatasetsController < ApplicationController
   def index
-    @datasets = Dataset.all
+
+
+    if !current_user.nil?
+      @user = current_user
+      @datasets = @user.datasets.all
+    else
+      flash[:danger] = "You must be logged in to access this resource."
+      redirect_to root_path
+    end
+
   end
 
   def new
@@ -43,6 +52,6 @@ class DatasetsController < ApplicationController
   end
 
   def dataset_params
-    params.require(:dataset).permit(:name, :attachment)
+    params.require(:dataset).permit(:name, { multiattach: [] })
   end
 end
