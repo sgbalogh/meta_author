@@ -4,7 +4,13 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    if !current_user.nil?
+      @user = User.find(params[:id])
+      @records = @user.records.all
+    else
+      flash[:danger] = "You aren't logged in!"
+      redirect_to login_path
+    end
   end
 
   def create

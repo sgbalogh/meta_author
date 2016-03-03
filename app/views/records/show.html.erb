@@ -62,6 +62,16 @@
       <a href="#" class="list-group-item active">Open on OGM</a>
 
     </div>
+
+    <div class="list-group">
+        <h4>Attached Datasets</h4>
+
+      <% @record.datasets.first.multiattach.each do |attach| %>
+          <a href="#" class="list-group-item"><code><%= attach.to_s.split('/')[-1] %></code></a>
+      <% end %>
+
+    </div>
+
   </div>
 
 </div>

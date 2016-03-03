@@ -6,6 +6,7 @@ class RecordsController < ApplicationController
   def index
     if !current_user.nil?
       @user = current_user
+      @records = @user.records.all
     else
       flash[:danger] = "You aren't logged in!"
       redirect_to login_path

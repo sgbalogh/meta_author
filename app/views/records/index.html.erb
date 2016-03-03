@@ -3,9 +3,9 @@
 <%= link_to "Batch Loader", 'records/new', class: "btn btn-default btn", role: "button" %>
 <hr>
 
-<h4>Recently Updated</h4>
+<h4>Recently Updated Records for <%= @user.firstname %></h4>
 <ul class="list-group">
-  <% Record.all.order(updated_at: :desc).take(20).each do |record| %>
+  <% @records.order(updated_at: :desc).take(20).each do |record| %>
       <a href="<%= records_path(record).sub! '.', '/' %>" class="list-group-item">
         <span class="badge alert-danger"><%= record.uuid %></span>
         <span class="badge alert-info">updated <%= distance_of_time_in_words_to_now(record.updated_at) %> ago</span>
