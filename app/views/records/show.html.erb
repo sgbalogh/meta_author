@@ -40,9 +40,12 @@
         <% end %>
 
         <% unless @record.datasets.first.nil? %>
-            <td><b>Attached Dataset</b></td>
+            <td><b>Attached Datasets</b></td>
             <td></td>
-            <td><code><%= @record.datasets.first.name %></code></td>
+            <td><% @record.datasets.first.multiattach.each do |attach| %>
+                  <code><%= attach.to_s.split('/')[-1] %><br></code>
+              <% end %>
+              </td>
 
 
         <% end %>
