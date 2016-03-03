@@ -34,6 +34,7 @@ class RecordsController < ApplicationController
       @centroid = [0, 0]
       @zoom = 1
     end
+    
 
     # render json: @record
   end
