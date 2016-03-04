@@ -2,15 +2,10 @@ Rails.application.routes.draw do
 
 
   get 'datasets/index'
-
   get 'datasets/new'
-
   get 'datasets/create'
-
   get 'datasets/destroy'
-
   get 'sessions/new'
-
   get 'users/new'
 
 

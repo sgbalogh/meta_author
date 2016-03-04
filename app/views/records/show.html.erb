@@ -61,6 +61,7 @@
     <div class="list-group">
 <h4>Options</h4>
       <%= link_to "Edit Record", edit_record_path, class: "list-group-item" %>
+      <%= link_to "Delete Record", edit_record_path, class: "list-group-item list-group-item-danger" %>
       <a href="?format=json" class="list-group-item">Export JSON</a>
       <a href="#" class="list-group-item">Open on OGM</a>
 
@@ -81,6 +82,7 @@
     <h5>Admin</h5>
     <div class="well">
       <a href="#" class="list-group-item">Unpack + Parse Dataset</a>
+      <a href="#" class="list-group-item">Quarantine</a>
           <% end %>
 
 

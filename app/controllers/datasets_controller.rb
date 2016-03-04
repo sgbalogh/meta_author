@@ -32,17 +32,11 @@ class DatasetsController < ApplicationController
 
     if @dataset.save && @record.save
       flash[:success] = "The dataset \"#{@dataset.name}\" has been uploaded successfully."
-      redirect_to datasets_path
+      redirect_to @record
     else
       render "new"
     end
 
-  end
-
-  def destroy
-    @dataset = Dataset.find(params[:id])
-    @dataset.destroy
-    redirect_to resumes_path, notice:  "The dataset #{@dataset.name} has been deleted."
   end
 
   private

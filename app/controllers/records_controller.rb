@@ -13,7 +13,6 @@ class RecordsController < ApplicationController
     end
   end
 
-
   def show
     @record = Record.find(params[:id])
 
@@ -34,8 +33,6 @@ class RecordsController < ApplicationController
       @centroid = [0, 0]
       @zoom = 1
     end
-    
-
     # render json: @record
   end
 
@@ -44,6 +41,13 @@ class RecordsController < ApplicationController
 
     # Still need to work in some authentication dimension; i.e. only
     # users from the same institution can edit? Or more sophisticated?
+
+  end
+
+  def destroy
+    @record = Record.find(params[:id])
+    @record.destroy
+
 
   end
 
