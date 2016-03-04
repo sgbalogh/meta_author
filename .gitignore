@@ -17,5 +17,6 @@
 /tmp
 /public/uploads/*
 /storage
+/quarantine
 .byebug_history
 .gitignore
