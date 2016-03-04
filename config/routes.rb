@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'download/download'
+
   get 'datasets/index'
   get 'datasets/new'
   get 'datasets/create'
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
   # Below for CarrierWave
   resources :datasets, only: [:index, :new, :create, :destroy]
   get 'datasets/index'
+  get '/download/:id/:basename.:extension', :controller => 'download', :action => 'download', :conditions => { :method => :get }
 
 
 

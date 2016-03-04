@@ -9,7 +9,7 @@
 <h3>My recent data submissions:</h3>
 <ul class="list-group">
   <% @datasets.order(updated_at: :desc).take(5).each do |dataset| %>
-      <a href="records/<%= dataset.record_id %>" class="list-group-item">
+      <a href="/records/<%= dataset.record_id %>" class="list-group-item">
 
         <span class="badge alert-info">submitted <%= distance_of_time_in_words_to_now(dataset.updated_at) %> ago</span>
         <span class="badge alert-info">parent: <%= Record.find(dataset.record_id).dc_title_s %></span>
