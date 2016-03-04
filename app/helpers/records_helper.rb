@@ -44,4 +44,10 @@ module RecordsHelper
     return [(array[0][0] + array[2][0])/2, (array[0][1] + array[1][1])/2]
   end
 
+  def work_it
+    `mkdir /Users/stephen/Desktop/hey_i_did_it`
+  end
+
+
+
 end

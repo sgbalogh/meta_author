@@ -44,13 +44,6 @@ class RecordsController < ApplicationController
 
   end
 
-  def destroy
-    @record = Record.find(params[:id])
-    @record.destroy
-
-
-  end
-
 
   def create
     if !current_user.nil?

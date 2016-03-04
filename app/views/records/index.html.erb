@@ -11,7 +11,7 @@
 <ul class="list-group">
   <% @records.order(updated_at: :desc).take(20).each do |record| %>
       <a href="<%= records_path(record).sub! '.', '/' %>" class="list-group-item">
-        <% unless record.datasets.empty? %><span class="badge alert-success">dataset attached</span><% end %>
+        <% unless record.datasets.empty? %><span class="badge alert-success">dataset</span><% end %>
 
         <span class="badge alert-danger"><%= record.uuid %></span>
         <span class="badge alert-info">updated <%= distance_of_time_in_words_to_now(record.updated_at) %> ago</span>
