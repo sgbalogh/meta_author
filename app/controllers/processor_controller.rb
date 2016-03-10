@@ -9,6 +9,8 @@ class ProcessorController < ApplicationController
         dataset = SingleDataset.new(path, rename)
         dataset.delay.stage()
         dataset.delay.unzip()
+        dataset.delay.brand()
+
       else
         flash[:danger] = "Nice try."
         redirect_to datasets_index_path
@@ -23,13 +25,6 @@ class ProcessorController < ApplicationController
 
   private
 
-  def stage(path, id)
-    `cp #{ENV['ROOT']}/#{path} #{ENV['QUARANTINE_DIR']}/#{id}.zip`
-  end
-
-  def unzip(id)
-    `unzip #{ENV['QUARANTINE_DIR']}/#{id}.zip -d #{ENV['QUARANTINE_DIR']}/#{id}`
-  end
 
   def get_uuid(datasetId)
     dataset = Dataset.find(datasetId)
