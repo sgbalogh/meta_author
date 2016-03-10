@@ -6,9 +6,9 @@ class ProcessorController < ApplicationController
         redirect_to datasets_index_path
         path = 'storage/dataset/multiattach/' + params[:id] + '/' + params[:basename] + '.' + params[:extension]
         rename = get_uuid(params[:id])
-        dataset = SenseDatum::SingleDataset.new(path, rename)
-        dataset.delay.stage(priority: 0)
-        dataset.delay.unzip(priority: 1)
+        dataset = SingleDataset.new(path, rename)
+        dataset.delay.stage()
+        dataset.delay.unzip()
       else
         flash[:danger] = "Nice try."
         redirect_to datasets_index_path
