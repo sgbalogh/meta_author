@@ -8,6 +8,7 @@ gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'gdal'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

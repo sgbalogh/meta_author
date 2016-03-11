@@ -6,10 +6,11 @@ class ProcessorController < ApplicationController
         redirect_to datasets_index_path
         path = 'storage/dataset/multiattach/' + params[:id] + '/' + params[:basename] + '.' + params[:extension]
         rename = get_uuid(params[:id])
-        dataset = SingleDataset.new(path, rename)
+        dataset = SingleDataset.new(path, rename, params[:id])
         dataset.delay.stage()
         dataset.delay.unzip()
-        dataset.delay.brand()
+        dataset.delay.baptise()
+        dataset.delay.get_extent()
 
       else
         flash[:danger] = "Nice try."
