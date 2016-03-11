@@ -11,7 +11,6 @@ class ProcessorController < ApplicationController
         dataset.delay.unzip()
         dataset.delay.baptise()
         dataset.delay.get_extent()
-
       else
         flash[:danger] = "Nice try."
         redirect_to datasets_index_path
@@ -26,12 +25,11 @@ class ProcessorController < ApplicationController
 
   private
 
-
   def get_uuid(datasetId)
     dataset = Dataset.find(datasetId)
     record = Record.find(dataset.record_id)
-    if record.uuid.nil?
-      return record.id
+    if record.uuid.blank?
+      return 'default_' + record.id.to_s
     else
       return record.uuid
     end
