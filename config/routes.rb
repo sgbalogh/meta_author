@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'download/download'
+  get 'processor/pursue'
 
   get 'datasets/index'
   get 'datasets/new'
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
   get 'datasets/index'
   get '/download/:id/:basename.:extension', :controller => 'download', :action => 'download', :conditions => { :method => :get }
 
+  # Below for Processor
+  get '/processor/:id/:basename.:extension', :controller => 'processor', :action => 'pursue', :conditions => { :method => :get }
 
 
 
