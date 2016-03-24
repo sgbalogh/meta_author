@@ -7,6 +7,7 @@ class SingleDataset
 
   def initialize(path, rename_id, dataset_id)
     @path = path
+    @path_parent = File.expand_path('..', path)
     @dataset_record_id = dataset_id
     @rename_id = rename_id
     @root_path = Rails.root
@@ -53,6 +54,17 @@ class SingleDataset
       end
       FileUtils.cp(path, "#{@path_to_christened_dir}/#{new_filename}")
     end
+
+    # Copy christened files (original projection) to output folder for 'archival' version
+    upload_paths = []
+    Find.find(@path_to_christened_dir) do |path|
+      upload_paths << path if path =~ /.*\.(shp|xml|sbn|shx|sbx|prj|dbf|csv|cst|txt|json)$/i
+    end
+
+    upload_paths.each do |path|
+      FileUtils.cp(path, "#{@path_to_output_dir}/#{@rename_id}")
+    end
+
   end
 
   # At some point this should use GDAL Ruby bindings instead of running system command
@@ -86,10 +98,24 @@ class SingleDataset
     				shp2pgsql -I -s 4326 -W "latin1" "#{path}" "#{File.basename(path)}" > "#{@path_to_output_dir}/#{@rename_id}_SQL/#{File.basename(path, '.*')}.sql"
 				fi
       `
-
       end
     end
   end
+
+  def move_and_zip_outputs
+    FileUtils.mkdir_p "#{@path_parent}/generated"
+    FileUtils.cp("#{@path_to_output_dir}/#{@rename_id}_SQL/#{@rename_id}.sql", "#{@path_parent}/generated") ## Copy SQL file
+    `zip -r -j "#{@path_parent}/generated/#{@rename_id}_WGS84.zip" "#{@path_to_output_dir}/#{@rename_id}_WGS84" `
+    `zip -r -j "#{@path_parent}/generated/#{@rename_id}.zip" "#{@path_to_output_dir}/#{@rename_id}" `
+    `zip -r -j "#{@path_parent}/generated.zip" "#{@path_parent}/generated" `
+  end
+
+  def update_processor_count
+    ds = Dataset.find(@dataset_record_id)
+    Record.update(ds.record_id, :processor_count => 1)
+  end
+
+
 
 end
 

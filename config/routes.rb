@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
 
   resources :records
+
+  delete 'records/:id/delete' => 'records#destroy', :as => :record_destroy
+
   resources :users
 
 

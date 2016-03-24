@@ -31,7 +31,7 @@ class DatasetsController < ApplicationController
     @dataset = @record.datasets.new(dataset_params)
 
     if @dataset.save && @record.save
-      flash[:success] = "The dataset \"#{@dataset.name}\" has been uploaded successfully."
+      flash[:success] = "Your dataset has been uploaded successfully."
       redirect_to @record
     else
       render "new"
@@ -46,6 +46,6 @@ class DatasetsController < ApplicationController
   end
 
   def dataset_params
-    params.require(:dataset).permit(:name, { multiattach: [] })
+    params.require(:dataset).permit({ multiattach: [] })
   end
 end

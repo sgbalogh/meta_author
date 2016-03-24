@@ -14,7 +14,7 @@
         <span class="badge alert-info">submitted <%= distance_of_time_in_words_to_now(dataset.updated_at) %> ago</span>
         <span class="badge alert-info">parent: <%= Record.find(dataset.record_id).dc_title_s %></span>
 
-        <%= dataset.name %>
+        <code><%= dataset.id %></code> <%= Record.find(dataset.record_id).dc_title_s %>
       </a>
   <% end %>
 </ul>

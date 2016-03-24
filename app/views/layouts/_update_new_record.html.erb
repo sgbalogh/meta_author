@@ -11,13 +11,6 @@
           detectRetina: true,
       }).addTo(map);
 
-      var preview = L.tileLayer.wms('https://maps-public.geo.nyu.edu/geoserver/sdr/wms', {
-          layers: 'sdr:nyu_2451_33888',
-          format: 'image/png',
-          transparent: true,
-          detectRetina: true,
-      }).addTo(map);
-
       var drawControl = new L.Control.Draw({
           edit: {
               featureGroup: featureGroup
@@ -38,9 +31,6 @@
               document.getElementById("georss_polygon_s").value = S + " " + W + " " + N + " " + W + " " + N + " " + E + " " + S + " " + E + " " + S + " " + W;
 
           }
-
-
-
       });
 
 
