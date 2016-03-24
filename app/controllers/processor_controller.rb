@@ -7,10 +7,13 @@ class ProcessorController < ApplicationController
         path = 'storage/dataset/multiattach/' + params[:id] + '/' + params[:basename] + '.' + params[:extension]
         rename = get_uuid(params[:id])
         dataset = SingleDataset.new(path, rename, params[:id])
-        dataset.delay.stage()
-        dataset.delay.unzip()
-        dataset.delay.baptise()
-        dataset.delay.get_extent()
+        dataset.delay.move_to_stage
+        dataset.delay.decompress_upload
+        dataset.delay.find_and_christen
+        dataset.delay.make_WGS84
+        dataset.delay.get_extent
+        dataset.delay.make_SQL
+
       else
         flash[:danger] = "Nice try."
         redirect_to datasets_index_path
