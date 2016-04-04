@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309204132) do
+ActiveRecord::Schema.define(version: 20160324203935) do
 
 # Could not dump table "datasets" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160309204132) do
     t.text     "dc_creator_sm"
     t.integer  "user_id"
     t.text     "georss_polygon_s"
+    t.integer  "processor_count"
   end
 
   add_index "records", ["user_id", "created_at"], name: "index_records_on_user_id_and_created_at"

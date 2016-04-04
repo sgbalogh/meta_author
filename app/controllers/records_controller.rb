@@ -13,6 +13,18 @@ class RecordsController < ApplicationController
     end
   end
 
+  def destroy ## NEEDS USER RESTRICTIONS
+    record = Record.find(params[:id])
+    datasets = record.datasets.all
+
+    datasets.destroy_all
+    record.destroy
+    flash[:success] = "Record and attached data deleted."
+    redirect_to records_path
+
+  end
+
+
   def show
     @record = Record.find(params[:id])
 
@@ -82,7 +94,11 @@ class RecordsController < ApplicationController
   private
 
   def user_params
-    params.require(:record).permit(:schema, :uuid, :dc_title_s, :dc_identifier_s, :dc_description_s, :dc_rights_s, :dct_provenance_s, :dct_references_s, :georss_box_s, :georss_polygon_s, :layer_id_s, :layer_geom_type_s, :layer_modified_dt, :layer_slug_s, :solr_geom, :solr_year_i, :dc_creator_sm)
+    params.require(:record).permit(:schema, :uuid, :dc_title_s, :dc_identifier_s, :dc_description_s,
+                                   :dc_rights_s, :dct_provenance_s, :dct_references_s, :georss_box_s,
+                                   :georss_polygon_s, :layer_id_s, :layer_geom_type_s, :layer_modified_dt,
+                                   :layer_slug_s, :solr_geom, :solr_year_i, :dc_creator_sm
+    )
   end
 
 end

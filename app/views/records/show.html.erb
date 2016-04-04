@@ -1,20 +1,11 @@
 <div id="map">
   <script>
-
       var center = <%= @centroid %>;
       var map = L.map('map').setView(center, <%= @zoom %>);
-
-      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          maxZoom: 18,
-          detectRetina: true,
-      }).addTo(map);
-
-      var preview = L.tileLayer.wms('https://maps-public.geo.nyu.edu/geoserver/sdr/wms', {
-          layers: 'sdr:nyu_2451_33888',
-          format: 'image/png',
-          transparent: true,
-          detectRetina: true,
+      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          detectRetina: true
       }).addTo(map);
 
       <% if !@polygon.nil? %>
@@ -61,7 +52,7 @@
     <div class="list-group">
       <h4>Options</h4>
       <%= link_to "Edit Record", edit_record_path, class: "list-group-item" %>
-      <%= link_to "Delete Record", edit_record_path, class: "list-group-item list-group-item-danger" %>
+      <%= link_to "Delete Record", record_destroy_path, :method => :delete, class: "list-group-item list-group-item-danger" %>
       <a href="?format=json" class="list-group-item">Export JSON</a>
       <a href="#" class="list-group-item">Open on OGM</a>
 
@@ -73,6 +64,14 @@
           <% @record.datasets.first.multiattach.each do |attach| %>
               <a href="/download/<%= @record.datasets.first.id %>/<%= attach.to_s.split('/')[-1] %>" class="list-group-item"><code><%= attach.to_s.split('/')[-1] %></code></a>
           <% end %>
+        </div>
+    <% end %>
+
+
+    <% unless @record.processor_count.nil? || @record.processor_count == 0 %>
+        <div class="list-group">
+          <h5>Generated Download</h5>
+              <a href="/download/<%= @record.datasets.first.id %>/generated.zip" class="list-group-item"><code>SHP, WGS84, SQL</code></a>
         </div>
     <% end %>
 

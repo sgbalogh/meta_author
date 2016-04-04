@@ -5,17 +5,10 @@
 
       var featureGroup = L.featureGroup().addTo(map);
 
-      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          maxZoom: 18,
-          detectRetina: true,
-      }).addTo(map);
-
-      var preview = L.tileLayer.wms('https://maps-public.geo.nyu.edu/geoserver/sdr/wms', {
-          layers: 'sdr:nyu_2451_33888',
-          format: 'image/png',
-          transparent: true,
-          detectRetina: true,
+      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          detectRetina: true
       }).addTo(map);
 
       var drawControl = new L.Control.Draw({
@@ -38,9 +31,6 @@
               document.getElementById("georss_polygon_s").value = S + " " + W + " " + N + " " + W + " " + N + " " + E + " " + S + " " + E + " " + S + " " + W;
 
           }
-
-
-
       });
 
 
