@@ -20,3 +20,5 @@
 /quarantine
 .byebug_history
 .gitignore
+# Ignore application configuration
+config/vars.yml

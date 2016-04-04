@@ -62,7 +62,7 @@
         <%= form.select :dc_rights_s, ['Restricted', 'Public'], {}, {class: 'form-control'} %>
 
         <%= form.label 'Provenance', class: "form_id" %>
-        <%= form.text_field :dct_provenance_s, class: 'form-control', placeholder: current_user.institution %>
+        <%= form.text_field :dct_provenance_s, class: 'form-control', placeholder: 'NYU' %>
 
         <%= form.label 'References', class: "form_id" %>
         <%= form.text_field :dct_references_s, class: 'form-control' %>

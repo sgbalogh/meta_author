@@ -75,16 +75,18 @@
         </div>
     <% end %>
 
-    <% if is_admin?(current_user) %>
+
         <h5>Admin</h5>
         <div class="well">
+          <% unless @record.datasets.empty? %>
           <a href="#" class="list-group-item">Unpack + Parse Dataset</a>
           <a href="#" class="list-group-item">Quarantine</a>
           <% @record.datasets.first.multiattach.each do |attach| %>
               <a href="/processor/<%= @record.datasets.first.id %>/<%= attach.to_s.split('/')[-1] %>" class="list-group-item"><code><%= attach.to_s.split('/')[-1] %></code></a>
           <% end %>
+          <% end %>
         </div>
-    <% end %>
+
 
   </div>
 
