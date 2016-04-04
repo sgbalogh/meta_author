@@ -8,24 +8,16 @@ Rails.application.routes.draw do
   get 'datasets/new'
   get 'datasets/create'
   get 'datasets/destroy'
-  get 'sessions/new'
-  get 'users/new'
+
 
 
   resources :records
 
   delete 'records/:id/delete' => 'records#destroy', :as => :record_destroy
 
-  resources :users
-
-
-  get 'register' => 'users#new'
 
   root 'static#home'
 
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
 
 
   # Below for CarrierWave
